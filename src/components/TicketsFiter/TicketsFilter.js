@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { changeFiltersList } from '../../actions';
+import classes from './TicketsFilter.module.scss';
 
 const TicketsFilter = () => {
   const dispatch = useDispatch();
@@ -33,16 +34,27 @@ const TicketsFilter = () => {
   const filtersList = currentFilters.map(({ name, label, selected }) => {
     return (
       <li key={label}>
-        <label>
-          <input type="checkbox" name={name} checked={selected} onChange={(e) => handleInputChange(e)} />
-          <span></span>
+        <label className={classes.check}>
+          <input
+            type="checkbox"
+            name={name}
+            checked={selected}
+            onChange={(e) => handleInputChange(e)}
+            className={classes['check__input']}
+          />
+          <span className={classes['check__box']}></span>
           {label}
         </label>
       </li>
     );
   });
 
-  return <ul>{filtersList}</ul>;
+  return (
+    <article className={classes.filter}>
+      <h4 className={classes['filter__title']}>Количество пересадок</h4>
+      <ul className={classes['filter__list']}>{filtersList}</ul>
+    </article>
+  );
 };
 
 export default TicketsFilter;

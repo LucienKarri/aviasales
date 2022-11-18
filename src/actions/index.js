@@ -1,5 +1,12 @@
 import aviasalesService from '../services/AviasalesService';
 
+export const loadMore = (value) => {
+  return {
+    type: 'LOAD_MORE',
+    payload: value,
+  };
+};
+
 export const changeFiltersList = (filtersList) => {
   return {
     type: 'CHANGE_FILTERS_LIST',

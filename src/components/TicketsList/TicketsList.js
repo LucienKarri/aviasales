@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSearchId, getTickets } from '../../actions';
 import Ticket from '../Ticket';
 import { v4 as uuidv4 } from 'uuid';
+import classes from './TicketsList.module.scss';
+import LoadMore from '../LoadMore/LoadMore';
 
 const TicketsList = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,7 @@ const TicketsList = () => {
   const tickets = useSelector((state) => state.tickets);
   const sortType = useSelector((state) => state.sortType);
   const filters = useSelector((state) => state.filtersList);
+  const visualisedCounter = useSelector((state) => state.visualisedCounter);
 
   useEffect(() => {
     if (!searchId) {
@@ -57,7 +60,7 @@ const TicketsList = () => {
   }, []);
 
   const sortedList = sortingList(filteredTickets, sortType)
-    .slice(0, 5)
+    .slice(0, visualisedCounter)
     .map((ticket) => {
       return (
         <li key={ticket.id}>
@@ -68,8 +71,8 @@ const TicketsList = () => {
 
   return (
     <>
-      <h2>{tickets.length}</h2>
-      <ul>{sortedList}</ul>
+      <ul className={classes['tickets-list']}>{sortedList}</ul>
+      <LoadMore />
     </>
   );
 };

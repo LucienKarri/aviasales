@@ -10,10 +10,13 @@ const initialState = {
     { name: '2', label: '2 пересадки', selected: true },
     { name: '3', label: '3 пересадки', selected: true },
   ],
+  visualisedCounter: 5,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'LOAD_MORE':
+      return { ...state, visualisedCounter: action.payload };
     case 'CHANGE_FILTERS_LIST':
       return { ...state, filtersList: action.payload };
     case 'CHANGE_SORT_TYPE':
