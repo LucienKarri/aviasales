@@ -2,12 +2,18 @@ import React from 'react';
 
 import logo from '../../images/logo.svg';
 import TicketsFilter from '../TicketsFiter';
-import TicketsSorter from '../TicketsSorter';
+import Buttons from '../Buttons';
 import TicketsList from '../TicketsList';
 import classes from './App.module.scss';
 import LoadingProgress from '../LoadingProgress';
 
 const App = () => {
+  const buttons = [
+    { name: 'cheapest', label: 'Самый дешевый' },
+    { name: 'fastest', label: 'Самый быстрый' },
+    { name: 'optimal', label: 'Оптимальный' },
+  ];
+
   return (
     <div className={classes.wrapper}>
       <header className={classes.header}>
@@ -19,7 +25,7 @@ const App = () => {
           <TicketsFilter />
         </aside>
         <section className={classes['main__content']}>
-          <TicketsSorter />
+          <Buttons buttons={buttons} />
           <TicketsList />
         </section>
       </main>

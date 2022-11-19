@@ -4,7 +4,7 @@ import { getSearchId, getTickets } from '../../actions';
 import Ticket from '../Ticket';
 import { v4 as uuidv4 } from 'uuid';
 import classes from './TicketsList.module.scss';
-import LoadMore from '../LoadMore/LoadMore';
+import Buttons from '../Buttons';
 
 const TicketsList = () => {
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const TicketsList = () => {
   return (
     <>
       <ul className={classes['tickets-list']}>{sortedList}</ul>
-      <LoadMore />
+      <Buttons buttons={[{ name: 'load', label: 'Загрузить еще 5 билетов' }]} />
     </>
   );
 };
