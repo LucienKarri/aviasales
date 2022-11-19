@@ -5,6 +5,7 @@ import TicketsFilter from '../TicketsFiter';
 import TicketsSorter from '../TicketsSorter';
 import TicketsList from '../TicketsList';
 import classes from './App.module.scss';
+import LoadingProgress from '../LoadingProgress';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <header className={classes.header}>
         <img src={logo} alt="aviasales" />
       </header>
+      <LoadingProgress />
       <main className={classes.main}>
         <aside className={classes['main__sidebar']}>
           <TicketsFilter />
