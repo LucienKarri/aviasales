@@ -11,6 +11,7 @@ const TicketsList = () => {
   const dispatch = useDispatch();
   const searchId = useSelector((state) => state.searchId);
   const isLoading = useSelector((state) => state.isLoading);
+  const error = useSelector((state) => state.error);
   const tickets = useSelector((state) => state.tickets);
   const sortType = useSelector((state) => state.sortType);
   const filters = useSelector((state) => state.filtersList);
@@ -75,7 +76,9 @@ const TicketsList = () => {
       );
     });
 
-  return (
+  return error ? (
+    <ErrorMessage message={error.message} />
+  ) : (
     <>
       <ul className={classes['tickets-list']}>{sortedList}</ul>
       {filteredTickets.length > visualisedCounter ? (

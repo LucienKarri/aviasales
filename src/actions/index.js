@@ -1,5 +1,12 @@
 import aviasalesService from '../services/AviasalesService';
 
+const errorDetect = (error) => {
+  return {
+    type: 'ERROR_DETECT',
+    payload: error,
+  };
+};
+
 export const loadMore = (value) => {
   return {
     type: 'LOAD_MORE',
@@ -28,7 +35,7 @@ export const getSearchId = () => {
       .then((res) => {
         dispatch({ type: 'GET_SEARCH_ID', payload: res.searchId });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => dispatch(errorDetect(e)));
   };
 };
 
@@ -42,8 +49,12 @@ export const getTickets = (searchId) => {
           dispatch({ type: 'TICKETS_LOAD' });
         }
       })
-      .catch(() => {
-        dispatch({ type: 'GET_TICKETS_PACK', payload: [] });
+      .catch((e) => {
+        if (e.message === '500') {
+          dispatch({ type: 'GET_TICKETS_PACK', payload: [] });
+        } else {
+          dispatch(errorDetect(e));
+        }
       });
   };
 };

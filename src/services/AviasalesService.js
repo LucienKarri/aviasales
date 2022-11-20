@@ -4,7 +4,11 @@ class AviasalesService {
   async fetchURL(url) {
     const res = await fetch(url);
     if (!res.ok) {
-      throw new Error(`Could not fetch, received ${res.status}`);
+      if (res.status !== 500) {
+        throw new Error(`Could not fetch, received ${res.status}`);
+      } else {
+        throw new Error(res.status);
+      }
     }
 
     return await res.json();

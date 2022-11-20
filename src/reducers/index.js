@@ -2,6 +2,7 @@ const initialState = {
   searchId: '',
   tickets: [],
   isLoading: true,
+  error: null,
   sortType: 'cheapest',
   filtersList: [
     { name: 'all', label: 'Все', selected: true },
@@ -15,6 +16,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'ERROR_DETECT':
+      return { ...state, error: action.payload };
     case 'LOAD_MORE':
       return { ...state, visualisedCounter: action.payload };
     case 'CHANGE_FILTERS_LIST':
