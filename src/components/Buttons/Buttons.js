@@ -1,8 +1,8 @@
-import classes from './Buttons.module.scss';
-
 import { useSelector, useDispatch } from 'react-redux';
 
 import { changeSortType, loadMore } from '../../actions';
+
+import classes from './Buttons.module.scss';
 
 const Buttons = ({ buttons }) => {
   const dispatch = useDispatch();

@@ -5,9 +5,10 @@ import logo from '../../images/logo.svg';
 import TicketsFilter from '../TicketsFiter';
 import Buttons from '../Buttons';
 import TicketsList from '../TicketsList';
-import classes from './App.module.scss';
 import LoadingProgress from '../LoadingProgress';
 import ErrorMessage from '../ErrorMessage';
+
+import classes from './App.module.scss';
 
 const App = () => {
   const buttons = [

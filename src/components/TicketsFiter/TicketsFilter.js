@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
+
 import { changeFiltersList } from '../../actions';
+
 import classes from './TicketsFilter.module.scss';
 
 const TicketsFilter = () => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoadingBar from 'react-top-loading-bar';
+
 import classes from './LoadingProgress.module.scss';
 
 const LoadingProgress = () => {

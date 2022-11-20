@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+
 import { getSearchId, getTickets } from '../../actions';
 import Ticket from '../Ticket';
-import { v4 as uuidv4 } from 'uuid';
-import classes from './TicketsList.module.scss';
 import Buttons from '../Buttons';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import ErrorMessage from '../ErrorMessage';
+
+import classes from './TicketsList.module.scss';
 
 const TicketsList = () => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React from 'react';
+import { add, format } from 'date-fns';
 
 import classes from './Ticket.module.scss';
-import { add, format } from 'date-fns';
 
 const Ticket = ({ ticket }) => {
   const routes = ticket.segments.map((segment) => {
