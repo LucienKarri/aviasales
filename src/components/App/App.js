@@ -1,4 +1,5 @@
 import React from 'react';
+import { Offline, Online } from 'react-detect-offline';
 
 import logo from '../../images/logo.svg';
 import TicketsFilter from '../TicketsFiter';
@@ -6,6 +7,7 @@ import Buttons from '../Buttons';
 import TicketsList from '../TicketsList';
 import classes from './App.module.scss';
 import LoadingProgress from '../LoadingProgress';
+import ErrorMessage from '../ErrorMessage';
 
 const App = () => {
   const buttons = [
@@ -19,16 +21,21 @@ const App = () => {
       <header className={classes.header}>
         <img src={logo} alt="aviasales" />
       </header>
-      <LoadingProgress />
-      <main className={classes.main}>
-        <aside className={classes['main__sidebar']}>
-          <TicketsFilter />
-        </aside>
-        <section className={classes['main__content']}>
-          <Buttons buttons={buttons} />
-          <TicketsList />
-        </section>
-      </main>
+      <Offline>
+        <ErrorMessage message={'Отсутствует интернет соединение'} />
+      </Offline>
+      <Online>
+        <LoadingProgress />
+        <main className={classes.main}>
+          <aside className={classes['main__sidebar']}>
+            <TicketsFilter />
+          </aside>
+          <section className={classes['main__content']}>
+            <Buttons buttons={buttons} />
+            <TicketsList />
+          </section>
+        </main>
+      </Online>
     </div>
   );
 };

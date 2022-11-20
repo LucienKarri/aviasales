@@ -25,7 +25,7 @@ const LoadingProgress = () => {
         shadow={false}
         height={6}
         containerClassName={classes['loading-progress']}
-        waitingTime={500}
+        waitingTime={700}
       />
       <span>{isLoading ? 'Загружаем билеты...' : null}</span>
     </div>

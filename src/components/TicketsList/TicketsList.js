@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSearchId, getTickets } from '../../actions';
 import Ticket from '../Ticket';
 import { v4 as uuidv4 } from 'uuid';
 import classes from './TicketsList.module.scss';
 import Buttons from '../Buttons';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const TicketsList = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const TicketsList = () => {
   const sortType = useSelector((state) => state.sortType);
   const filters = useSelector((state) => state.filtersList);
   const visualisedCounter = useSelector((state) => state.visualisedCounter);
+  const [transformFilters, setTransformFilters] = useState([]);
 
   useEffect(() => {
     if (!searchId) {
@@ -22,6 +24,17 @@ const TicketsList = () => {
       dispatch(getTickets(searchId));
     }
   }, [dispatch, isLoading, searchId, tickets]);
+
+  useEffect(() => {
+    setTransformFilters(
+      filters.reduce((total, filter) => {
+        if (filter.selected && filter.name !== 'all') {
+          total.push(Number(filter.name));
+        }
+        return total;
+      }, [])
+    );
+  }, [filters]);
 
   const sortingList = (arr, sortType) => {
     switch (sortType) {
@@ -45,13 +58,6 @@ const TicketsList = () => {
     return ticket;
   });
 
-  const transformFilters = filters.reduce((total, filter) => {
-    if (filter.selected && filter.name !== 'all') {
-      total.push(Number(filter.name));
-    }
-    return total;
-  }, []);
-
   const filteredTickets = transformTickets.reduce((res, ticket) => {
     if (transformFilters.includes(ticket.stops)) {
       res.push(ticket);
@@ -72,7 +78,12 @@ const TicketsList = () => {
   return (
     <>
       <ul className={classes['tickets-list']}>{sortedList}</ul>
-      <Buttons buttons={[{ name: 'load', label: 'Загрузить еще 5 билетов' }]} />
+      {filteredTickets.length > visualisedCounter ? (
+        <Buttons buttons={[{ name: 'load', label: 'Загрузить еще 5 билетов' }]} />
+      ) : null}
+      {sortedList.length === 0 ? (
+        <ErrorMessage message={'Рейсов, подходящих под заданные фильтры, не найдено'} />
+      ) : null}
     </>
   );
 };
