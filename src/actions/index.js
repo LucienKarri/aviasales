@@ -1,4 +1,12 @@
-import { ERROR_DETECT, LOAD_MORE, CHANGE_FILTERS_LIST, CHANGE_SORT_TYPE, TICKETS_LOAD, GET_SEARCH_ID, GET_TICKETS_PACK } from "../types/types";
+import {
+  ERROR_DETECT,
+  LOAD_MORE,
+  CHANGE_FILTERS_LIST,
+  CHANGE_SORT_TYPE,
+  TICKETS_LOAD,
+  GET_SEARCH_ID,
+  GET_TICKETS_PACK,
+} from '../types/types';
 import aviasalesService from '../services/AviasalesService';
 
 const errorDetect = (error) => {
