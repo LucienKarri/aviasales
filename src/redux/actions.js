@@ -1,3 +1,5 @@
+import aviasalesService from '../services/AviasalesService';
+
 import {
   ERROR_DETECT,
   LOAD_MORE,
@@ -6,8 +8,7 @@ import {
   TICKETS_LOAD,
   GET_SEARCH_ID,
   GET_TICKETS_PACK,
-} from '../types/types';
-import aviasalesService from '../services/AviasalesService';
+} from './types';
 
 const errorDetect = (error) => {
   return {

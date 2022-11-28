@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { changeSortType, loadMore } from '../../actions';
+import { changeSortType, loadMore } from '../../redux/actions';
 
 import classes from './Buttons.module.scss';
 

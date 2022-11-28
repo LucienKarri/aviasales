@@ -6,7 +6,7 @@ import {
   TICKETS_LOAD,
   GET_SEARCH_ID,
   GET_TICKETS_PACK,
-} from '../types/types';
+} from './types';
 
 const initialState = {
   searchId: '',

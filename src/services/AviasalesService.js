@@ -1,5 +1,5 @@
 class AviasalesService {
-  baseURL = 'https://front-test.dev.aviasales.ru';
+  baseURL = 'https://aviasales-test-api.kata.academy';
 
   async fetchURL(url) {
     const res = await fetch(url);
