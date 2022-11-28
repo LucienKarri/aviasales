@@ -1,8 +1,6 @@
 import React from 'react';
 import { add, format } from 'date-fns';
 
-import RouteInfo from '../RouteInfo';
-
 import classes from './Ticket.module.scss';
 
 const Ticket = ({ ticket }) => {
@@ -29,6 +27,33 @@ const Ticket = ({ ticket }) => {
         <RouteInfo route={routes[1]} />
       </div>
     </article>
+  );
+};
+
+const RouteInfo = ({ route }) => {
+  return (
+    <div className={classes.route}>
+      <div className={classes['route__info']}>
+        <span className={classes['route__top']}>
+          {route.origin} - {route.destination}
+        </span>
+        <span className={classes['route__bottom']}>
+          {route.start} - {route.end}
+        </span>
+      </div>
+      <div className={classes['route__info']}>
+        <span className={classes['route__top']}>В пути</span>
+        <span className={classes['route__bottom']}>
+          {route.hours}ч {route.minutes}м
+        </span>
+      </div>
+      <div className={classes['route__info']}>
+        <span className={classes['route__top']}>
+          {route.stops.length || 'Без'} {route.stopsText}
+        </span>
+        <span className={classes['route__bottom']}>{route.stops.join(', ') || '-'}</span>
+      </div>
+    </div>
   );
 };
 
